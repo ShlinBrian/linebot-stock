@@ -2,10 +2,6 @@ include .env
 
 .PHONY: clean init
 
-init: clean
-	pipenv install --dev
-	pipenv run pre-commit install
-
 service_up:
 	docker-compose up -d postgres
 
@@ -14,27 +10,16 @@ service_down:
 
 analysis: bandit
 
-bandit:
-	pipenv run bandit api/
 
 reformat: isort black
 
 black:
-	pipenv run black api/
-
-isort:
-	pipenv run isort .
+	black api/
 
 lint: flake8 pylint
 
-flake8:
-	pipenv run flake8 api/ --max-line-length=120
-
-pylint:
-	pipenv run pylint --rcfile=setup.cfg api/*
-
 test:
-	pipenv run pytest -vv\
+	pytest -vv\
 	 --cov-report=term-missing\
 	 --cov=api/endpoints\
 	 --cov=api/common\
@@ -54,5 +39,5 @@ clean:
 	rm -f report.xml
 	rm -f coverage.xml
 
-run-dev:
-	cd api/ && pipenv run uvicorn --port $(API_PORT) --host 0.0.0.0 --log-level error app:APP --reload
+run-api:
+	cd api/ && uvicorn --port $(API_PORT) --host 0.0.0.0 --log-level error app:APP --reload

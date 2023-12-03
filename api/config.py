@@ -12,6 +12,8 @@ class Config:
     DB_URL = os.environ.get(
         "DB_URL", ""
     )
+    EMAIL = os.environ.get("EMAIL","")
+    PASSWORD = os.environ.get("PASSWORD","")
     
     # LINE token for chatbot
     LINE_TOKEN = os.environ.get("LINE_TOKEN", "")

@@ -10,8 +10,7 @@ Line chatbot implementation, with fastapi framework and using redis as cache.
 
 | Name | Version |
 | --- | --- |
-| Python | 3.8 |
-| pipenv(Python module) | 2018.11.26 or up |
+| Python | 3.12 |
 
 ### Environment setup
 
@@ -27,7 +26,6 @@ make init
 
 2. Enter the environment and start developing
 ```
-pipenv shell
 ```
 
 3. Start related components of API service
