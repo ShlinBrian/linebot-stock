@@ -100,17 +100,25 @@ class ImageMapMessage:
             {
                 "type": "uri",
                 "area": {
-                        "x": 0,
-                        "y": 0,
-                        "width": 1040,
-                        "height": 1470,
+                    "x": 0,
+                    "y": 0,
+                    "width": 1040,
+                    "height": 1470,
                 },
-                "linkUri": ""
+                "linkUri": "",
             }
-        ]
+        ],
     }
 
-    def __init__(self, baseUrl: str, linkUri: str, altText: str=PARMS["altText"], baseSize: dict=PARMS["baseSize"], action: list=PARMS["action"], video: dict = {}):
+    def __init__(
+        self,
+        baseUrl: str,
+        linkUri: str,
+        altText: str = PARMS["altText"],
+        baseSize: dict = PARMS["baseSize"],
+        action: list = PARMS["action"],
+        video: dict = {},
+    ):
         self.baseUrl = baseUrl
         self.altText = altText
         self.baseSize = baseSize
@@ -133,7 +141,7 @@ class ImageMapMessage:
 
 class QuickReplyCamera(FlexMessage):
 
-    def __init__(self, jsonformat: str, altText:str):
+    def __init__(self, jsonformat: str, altText: str):
         super().__init__(jsonformat, altText)
 
     def format(self):
@@ -142,9 +150,9 @@ class QuickReplyCamera(FlexMessage):
         payload["quickReply"] = {"items": []}
         for type, label in [("camera", "開啟相機"), ("cameraRoll", "開啟相簿")]:
             payload["quickReply"]["items"].append(
-                        {
-                            "type": "action",
-                            "action": {"type": type, "label": label},
-                        }
-                    )
+                {
+                    "type": "action",
+                    "action": {"type": type, "label": label},
+                }
+            )
         return payload

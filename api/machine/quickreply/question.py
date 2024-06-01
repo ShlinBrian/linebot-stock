@@ -15,11 +15,15 @@ class Question(State):
             # First time enter, the user will now keep in this state until further reply
             # Setup the session
             STATE_CACHE.set(
-                    self.line_id, {"machine": self.machine.name, "state": self.name}
-                )
+                self.line_id, {"machine": self.machine.name, "state": self.name}
+            )
             reply_message(
                 self.reply_token,
-                [QuickReplyMessage("What is the result of 1+1 ?", [("2", "2"), ("1", "1")])],
+                [
+                    QuickReplyMessage(
+                        "What is the result of 1+1 ?", [("2", "2"), ("1", "1")]
+                    )
+                ],
             )
             return "OK"
 
@@ -33,5 +37,7 @@ class Question(State):
                 reply_message(self.reply_token, [TextMessage("Incorrect answer")])
                 return "Incorrect answer"
         except ValueError:
-            reply_message(self.reply_token, [TextMessage("Invalid option(must be a number)")])
+            reply_message(
+                self.reply_token, [TextMessage("Invalid option(must be a number)")]
+            )
             return "Invalid option"
