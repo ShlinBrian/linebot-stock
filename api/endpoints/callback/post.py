@@ -45,7 +45,7 @@ def post(payload: Payload):
 
         if event.type == "message" and event.message["type"] == "text":
             message = event.message["text"]
-                
+
             # No session, use pre-defined flow
             if message == "quickreply":
                 machine = MACHINES["quickreply"]
@@ -56,11 +56,11 @@ def post(payload: Payload):
                 state = "reply"
 
             elif message == "ChatGPT":
-                machine = MACHINES["chatGPT"]
+                machine = MACHINES["chatgpt"]
                 state = "reply"
 
             elif message == "Stock":
-                machine = MACHINES["Stock"]
+                machine = MACHINES["stock"]
                 state = "reply"
 
             elif message == "Weather":

@@ -7,10 +7,9 @@ from common.enums import EnumResponse
 from loguru import logger
 
 APP = FastAPI(
-    version=Config.VERSION,
+    version=Config.APP_VERSION,
     title=Config.APP_TITLE,
     description=Config.APP_DESCRIPTION,
-    openapi_url=Config.OPENAPI_URL,
 )
 API_ROUTER = APIRouter()
 

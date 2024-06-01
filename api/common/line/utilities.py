@@ -27,15 +27,15 @@ def push_message(user_id: str, messages: List[TextMessage]) -> Response:
     )
 
     response = requests.post(
-            "https://api.line.me/v2/bot/message/push",
-            headers={
-                "Content-Type": "application/json; charset=UTF-8",
-                "Authorization": "Bearer " + Config.LINE_TOKEN,
-            },
-            json={
-                "to": user_id,
-                "messages": [message.format() for message in messages],
-            },
+        "https://api.line.me/v2/bot/message/push",
+        headers={
+            "Content-Type": "application/json; charset=UTF-8",
+            "Authorization": "Bearer " + Config.LINE_TOKEN,
+        },
+        json={
+            "to": user_id,
+            "messages": [message.format() for message in messages],
+        },
     )
     if response.status_code != 200:
         raise Exception(f"Push message failed! Status code: {response.status_code}")
@@ -60,17 +60,16 @@ def reply_message(token: str, messages: List[TextMessage]) -> Response:
     )
 
     response = requests.post(
-            "https://api.line.me/v2/bot/message/reply",
-            headers={
-                "Content-Type": "application/json; charset=UTF-8",
-                "Authorization": "Bearer " + Config.LINE_TOKEN,
-            },
-            json={
-                "replyToken": token,
-                "messages": [message.format() for message in messages],
-            },
+        "https://api.line.me/v2/bot/message/reply",
+        headers={
+            "Content-Type": "application/json; charset=UTF-8",
+            "Authorization": "Bearer " + Config.LINE_TOKEN,
+        },
+        json={
+            "replyToken": token,
+            "messages": [message.format() for message in messages],
+        },
     )
-    
+
     if response.status_code != 200:
         raise Exception(f"Reply message failed! Status code: {response.status_code}")
-
