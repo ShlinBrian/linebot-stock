@@ -5,4 +5,4 @@ COPY Pipfile /api/Pipfile
 COPY Pipfile.lock /api/Pipfile.lock
 COPY ./api/ /api/
 
-CMD ["uvicorn", "--port", "8000", "--host", "0.0.0.0","--log-level", "error", "app:APP"]
+CMD ["uvicorn", "--port", "8001", "--host", "0.0.0.0","--log-level", "error", "app:APP"]
