@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+loguru
+pydantic
+requests
+python-dotenv
+sqlalchemy
+pytest
+pytest-cov
+pytest-mock
+yfinance
