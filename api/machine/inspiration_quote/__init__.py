@@ -2,6 +2,6 @@ from ..classes import Machine
 from .reply import Reply
 
 
-class StockMachine(Machine):
-    name = "stock_price"
+class InspirationQuoteMachine(Machine):
+    name = "inspiration_quote"
     states = {Reply.name: Reply}

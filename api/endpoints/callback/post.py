@@ -51,21 +51,25 @@ def post(payload: Payload):
                 machine = MACHINES["quickreply"]
                 state = "question"
 
-            elif message == "Notification":
-                machine = MACHINES["notification"]
+            elif message == "Stock Price":
+                machine = MACHINES["stock_price"]
                 state = "reply"
 
-            elif message == "ChatGPT":
-                machine = MACHINES["chatgpt"]
+            elif message == "Asset Allocation":
+                machine = MACHINES["asset_allocation"]
                 state = "reply"
 
-            elif message == "Stock":
-                machine = MACHINES["stock"]
+            # elif message == "Self Notification":
+            #     machine = MACHINES["self_notification"]
+            #     state = "reply"
+
+            elif message == "Inspiration Quote":
+                machine = MACHINES["inspiration_quote"]
                 state = "reply"
 
-            elif message == "Weather":
-                machine = MACHINES["weather"]
-                state = "reply"
+            # elif message == "U.S. Economy":
+            #     machine = MACHINES["us_economy"]
+            #     state = "reply"
 
         machine.setup(line_id, reply_token)
         logger.debug(f"Line: {line_id}, Machine: {machine.name}, State: {state}")

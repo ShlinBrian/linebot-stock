@@ -2,6 +2,6 @@ from ..classes import Machine
 from .reply import Reply
 
 
-class ChatgptMachine(Machine):
-    name = "chatgpt"
+class AssetAllocationMachine(Machine):
+    name = "asset_allocation"
     states = {Reply.name: Reply}
