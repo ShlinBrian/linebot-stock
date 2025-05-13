@@ -3,10 +3,10 @@ version: '3.4'
 services:
   api:
     build: .
-    container_name: fastapi-template
-    image: fastapi-template:latest
+    container_name: line-bot
+    image: line-bot:latest
     restart: always
     env_file:
       - .env
     ports:
-      - 8000:8000
+      - 8001:8001

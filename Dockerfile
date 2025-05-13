@@ -1,8 +1,14 @@
-FROM python:3.8.9-slim
+FROM python:3.8.12-slim
 
+# Set working directory
 WORKDIR /api/
-COPY Pipfile /api/Pipfile
-COPY Pipfile.lock /api/Pipfile.lock
-COPY ./api/ /api/
 
-CMD ["uvicorn", "--port", "8000", "--host", "0.0.0.0","--log-level", "error", "app:APP"]
+# Copy requirements and install dependencies
+COPY requirements.txt /api/requirements.txt
+RUN pip install --upgrade pip && pip install -r requirements.txt
+
+# Copy application files
+COPY ./api /api/
+
+# Run the application
+CMD ["uvicorn", "--port", "8001", "--host", "0.0.0.0", "--log-level", "error", "app:APP"]

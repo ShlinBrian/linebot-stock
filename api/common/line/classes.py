@@ -156,3 +156,63 @@ class QuickReplyCamera(FlexMessage):
                 }
             )
         return payload
+
+
+def dataframe_to_flex_message(df):
+    # Convert the DataFrame to a list of dictionaries
+    data = df.to_dict(orient="records")
+    # Get the column headers
+    headers = df.columns.tolist()
+
+    # Create the header content for the Flex Message
+    header_contents = [
+        {
+            "type": "text",
+            "text": header,
+            "weight": "bold",  # Make the header bold
+            "color": "#000000",  # Use a darker color for the header text
+            "size": "xs",
+            "flex": 1,
+            "align": "start",  # Align headers to the start
+        }
+        for header in headers
+    ]
+
+    # Add a separator after the headers
+    contents = [
+        {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": header_contents,
+            "margin": "xs",  # Add some margin to separate from the data rows
+        },
+        {"type": "separator"},
+    ]
+
+    # Add the data rows
+    for row in data:
+        row_contents = [
+            {
+                "type": "text",
+                "text": str(row[header]),
+                "size": "md",
+                "color": "#555555",
+                "flex": 1,
+                "align": "start",  # Align data to the start
+            }
+            for header in headers
+        ]
+        contents.append(
+            {"type": "box", "layout": "horizontal", "contents": row_contents}
+        )
+
+    # Create the Flex Message using your FlexMessage class
+    flex_message = FlexMessage(
+        jsonformat={
+            "type": "bubble",
+            "body": {"type": "box", "layout": "vertical", "contents": contents},
+        },
+        altText="Your data",
+    )
+
+    return flex_message
